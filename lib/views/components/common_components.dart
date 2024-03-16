@@ -8,9 +8,10 @@ import 'package:rim_chess/controllers/game_state_provider.dart';
 import 'package:rim_chess/models/models.dart';
 
 class BoardPiece extends StatefulWidget {
-  const BoardPiece(
-      {super.key, required this.position, required this.firstIsWhite});
-  final bool firstIsWhite;
+  const BoardPiece({
+    super.key,
+    required this.position,
+  });
   final BoardPosition position;
 
   @override
@@ -45,14 +46,18 @@ class _BoardPieceState extends State<BoardPiece> {
       ),
       child: GestureDetector(
         onTap: () {
+          print('tapped');
           if (Provider.of<GameStateProvider>(context, listen: false)
               .positionIsWhite(widget.position)) {
+            print('white piece tapped');
             if (Provider.of<GameStateProvider>(context, listen: false)
                 .whiteTurn) {
               Provider.of<GameStateProvider>(context, listen: false)
                   .pieceTapped(widget.position);
             }
           } else {
+            print('black piece apped');
+
             if (!Provider.of<GameStateProvider>(context, listen: false)
                 .whiteTurn) {
               Provider.of<GameStateProvider>(context, listen: false)

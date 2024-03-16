@@ -18,6 +18,7 @@ class GameStateProvider extends ChangeNotifier {
   bool positionIsWhite(BoardPosition position) =>
       _board[position.cIndex][position.rIndex] == SquareContent.whitePiece;
   void reverseTurn() => _whiteTurn = !_whiteTurn;
+
   void pieceTapped(BoardPosition newPosition) {
     if (_touchedPiece == null) {
       if (whiteTurn) {
