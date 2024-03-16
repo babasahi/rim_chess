@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rim_chess/views/game_screen.dart';
+import 'package:rim_chess/views/screens/game_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
