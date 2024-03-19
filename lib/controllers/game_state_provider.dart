@@ -10,7 +10,7 @@ class GameStateProvider extends ChangeNotifier {
   final List<List<SquareContent>> _board = initialBoard;
 
   List<List<SquareContent>> get board => _board;
-  BoardPosition? get touchedPiece => _highlightedPiece;
+  BoardPosition? get highlightedPiece => _highlightedPiece;
   bool get whiteTurn => _whiteTurn;
   int get numCapturedWhitePieces => _numCapturedWhitePieces;
   int get numCapturedBlackPieces => _numCapturedBlackPieces;
@@ -22,24 +22,26 @@ class GameStateProvider extends ChangeNotifier {
 
   void pieceTapped(BoardPosition newPosition) {
     if (_highlightedPiece == null) {
-      // Highlight tap
+      print('Highlight tap');
       if (whiteTurn) {
         if (pieceIsWhite(newPosition)) {
-          // White tapped his piece, highlight it.
+          print('White tapped his piece, highlight it.');
           _highlightedPiece = newPosition;
           notifyListeners();
         }
       } else {
-        // black's turn.
+        print('black s turn.');
         if (!pieceIsWhite(newPosition)) {
-          // black tapped his piece, highlight it.
+          print('black tapped his piece, highlight it.');
           _highlightedPiece = newPosition;
           notifyListeners();
         }
       }
     } else {
+      print('This is action tap.');
       if (newPosition != _highlightedPiece) {
-        // This is action tap.
+        print('Destination is diffrent than self');
+
         destinationTapped(newPosition);
       }
     }
@@ -47,9 +49,12 @@ class GameStateProvider extends ChangeNotifier {
 
   void destinationTapped(BoardPosition newPosition) {
     if (isReacheable(_highlightedPiece!, newPosition)) {
+      print('print piece is reachaeble');
       if (isEnemyPiece(_highlightedPiece!, newPosition)) {
+        print('piece is enemy piece');
         killPiece(_highlightedPiece!, newPosition);
       } else {
+        print('piece is not enemy');
         movePiece(_highlightedPiece!, newPosition);
       }
     }

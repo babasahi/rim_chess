@@ -73,7 +73,7 @@ class _BoardPieceState extends State<BoardPiece> {
           height: boardHeight(context) / boardLength,
           width: boardWidth(context) / boardLength,
           decoration: BoxDecoration(
-            color: Provider.of<GameStateProvider>(context).touchedPiece ==
+            color: Provider.of<GameStateProvider>(context).highlightedPiece ==
                     widget.position
                 ? touchedSquareColor
                 : boardsPattern.elementAt(
@@ -82,22 +82,30 @@ class _BoardPieceState extends State<BoardPiece> {
                     : blackSqureColor,
           ),
           child: Animate(
-            effects: const [FadeEffect(duration: Duration(seconds: 3))],
-            onInit: (controller) async {
-              await player.setAsset('assets/sounds/capture.mp3');
-              player.play();
-            },
-            child:
-                /* Center(
+              effects: const [FadeEffect(duration: Duration(seconds: 3))],
+              onInit: (controller) async {
+                await player.setAsset('assets/sounds/capture.mp3');
+                player.play();
+              },
+              child: Provider.of<GameStateProvider>(context).board.elementAt(
+                          widget.position.cIndex)[widget.position.rIndex] ==
+                      SquareContent.empty
+                  ? const SizedBox()
+                  : (Provider.of<GameStateProvider>(context).board.elementAt(
+                              widget.position.cIndex)[widget.position.rIndex] ==
+                          SquareContent.blackPiece
+                      ? const BlackPiece(
+                          smallSize: false,
+                        )
+                      : const WhitePiece(
+                          smallSize: false,
+                        ))
+              /* Center(
                   child: Text(
                       '${widget.position.cIndex},${widget.position.rIndex}'))
              */
-                getSquareContentWidget(
-              Provider.of<GameStateProvider>(context, listen: false)
-                  .board
-                  .elementAt(widget.position.cIndex)[widget.position.rIndex],
-            ),
-          ),
+
+              ),
         ),
       ),
     );

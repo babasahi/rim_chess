@@ -6,9 +6,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: Colors.amberAccent,
+    return Scaffold(
+      backgroundColor: Colors.tealAccent,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,6 +44,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }

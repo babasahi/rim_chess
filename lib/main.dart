@@ -14,7 +14,6 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.tealAccent,
         body: ChangeNotifierProvider(
           create: (context) => GameStateProvider(),
           builder: (context, child) {

@@ -16,7 +16,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orangeAccent,
+      backgroundColor: Colors.tealAccent,
       body: SafeArea(
           child: ChangeNotifierProvider(
         create: (context) => GameStateProvider(),
