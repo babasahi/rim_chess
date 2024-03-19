@@ -46,34 +46,8 @@ class _BoardPieceState extends State<BoardPiece> {
       ),
       child: GestureDetector(
         onTap: () {
-          if (Provider.of<GameStateProvider>(context, listen: false)
-                  .pieceType(widget.position) ==
-              SquareContent.whitePiece) {
-            // Piece is white
-            if (Provider.of<GameStateProvider>(context, listen: false)
-                .whiteTurn) {
-              // Turn is white
-              Provider.of<GameStateProvider>(context, listen: false)
-                  .pieceTapped(widget.position);
-              // white tapped piece.
-            }
-          } else if (Provider.of<GameStateProvider>(context, listen: false)
-                  .pieceType(widget.position) ==
-              SquareContent.blackPiece) {
-            // Piece is black
-
-            if (!Provider.of<GameStateProvider>(context, listen: false)
-                .whiteTurn) {
-              // Turn is black
-
-              Provider.of<GameStateProvider>(context, listen: false)
-                  .pieceTapped(widget.position);
-              // black tapped piece.
-            }
-          } else {
-            Provider.of<GameStateProvider>(context, listen: false)
-                .pieceTapped(widget.position);
-          }
+          Provider.of<GameStateProvider>(context, listen: false)
+              .pieceTapped(widget.position);
         },
         child: Container(
           height: boardHeight(context) / boardLength,
