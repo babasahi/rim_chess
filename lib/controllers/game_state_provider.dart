@@ -15,8 +15,9 @@ class GameStateProvider extends ChangeNotifier {
   int get numCapturedWhitePieces => _numCapturedWhitePieces;
   int get numCapturedBlackPieces => _numCapturedBlackPieces;
 
-  bool pieceIsWhite(BoardPosition position) =>
-      _board[position.cIndex][position.rIndex] == SquareContent.whitePiece;
+  SquareContent pieceType(BoardPosition position) {
+    return _board[position.cIndex][position.rIndex];
+  }
 
   void reverseTurn() => _whiteTurn = !_whiteTurn;
 
@@ -24,14 +25,14 @@ class GameStateProvider extends ChangeNotifier {
     if (_highlightedPiece == null) {
       print('Highlight tap');
       if (whiteTurn) {
-        if (pieceIsWhite(newPosition)) {
+        if (pieceType(newPosition) == SquareContent.whitePiece) {
           print('White tapped his piece, highlight it.');
           _highlightedPiece = newPosition;
           notifyListeners();
         }
       } else {
         print('black s turn.');
-        if (!pieceIsWhite(newPosition)) {
+        if (pieceType(newPosition) == SquareContent.blackPiece) {
           print('black tapped his piece, highlight it.');
           _highlightedPiece = newPosition;
           notifyListeners();
@@ -43,6 +44,9 @@ class GameStateProvider extends ChangeNotifier {
         print('Destination is diffrent than self');
 
         destinationTapped(newPosition);
+      } else {
+        _highlightedPiece = null;
+        notifyListeners();
       }
     }
   }
