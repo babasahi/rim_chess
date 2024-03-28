@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/controllers/game_state_provider.dart';
@@ -40,9 +39,6 @@ class _BoardPieceState extends State<BoardPiece> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        final player = AudioPlayer();
-        await player.setAsset('assets/sounds/capture.mp3');
-        await player.play();
         Provider.of<GameStateProvider>(context, listen: false)
             .pieceTapped(widget.position);
       },
