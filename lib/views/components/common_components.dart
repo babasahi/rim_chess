@@ -19,7 +19,6 @@ class BoardPiece extends StatefulWidget {
 }
 
 class _BoardPieceState extends State<BoardPiece> {
-  final player = AudioPlayer();
   Widget getSquareContentWidget(SquareContent squareContent) {
     switch (squareContent) {
       case SquareContent.blackPiece:
@@ -40,7 +39,10 @@ class _BoardPieceState extends State<BoardPiece> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        final player = AudioPlayer();
+        await player.setAsset('assets/sounds/capture.mp3');
+        await player.play();
         Provider.of<GameStateProvider>(context, listen: false)
             .pieceTapped(widget.position);
       },
@@ -58,10 +60,7 @@ class _BoardPieceState extends State<BoardPiece> {
         ),
         child: Animate(
             effects: const [FadeEffect(duration: Duration(seconds: 3))],
-            onInit: (controller) async {
-              await player.setAsset('assets/sounds/capture.mp3');
-              player.play();
-            },
+            onInit: (controller) {},
             child: Provider.of<GameStateProvider>(context).board.elementAt(
                         widget.position.cIndex)[widget.position.rIndex] ==
                     SquareContent.empty
