@@ -105,10 +105,15 @@ class GameStateProvider extends ChangeNotifier {
   }
 
   Future<void> playMoveSound() async {
+    DateTime startTime = DateTime.now();
     try {
       await _player.setAsset('assets/sounds/move-self.mp3').then((value) async {
         print('set asset');
-        await _player.play().then((value) => print('played move sound'));
+        await _player.play().then((value) {
+          DateTime endTime = DateTime.now();
+          print(
+              'play sound finished at :${endTime.difference(startTime).inSeconds}');
+        });
       });
     } catch (e) {
       print(e);
