@@ -33,7 +33,6 @@ class BoardPosition extends Equatable {
 class Player {
   final int playerId;
   final String name;
-  final String avatar;
   final String phoneNumber;
   final DateTime createdAt;
   final int rating;
@@ -41,7 +40,6 @@ class Player {
   const Player(
       {required this.playerId,
       required this.name,
-      required this.avatar,
       required this.phoneNumber,
       required this.createdAt,
       required this.rating});
@@ -50,7 +48,6 @@ class Player {
     return Player(
       playerId: json['playerId'],
       name: json['name'],
-      avatar: json['avatar'],
       phoneNumber: json['phoneNumber'],
       createdAt: DateTime.parse(json['createdAt']),
       rating: json['rating'],
@@ -61,7 +58,6 @@ class Player {
     return {
       'playerId': playerId,
       'name': name,
-      'avatar': avatar,
       'phoneNumber': phoneNumber,
       'createdAt': createdAt.toIso8601String(),
       'rating': rating,
