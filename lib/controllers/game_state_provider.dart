@@ -106,9 +106,10 @@ class GameStateProvider extends ChangeNotifier {
 
   Future<void> playMoveSound() async {
     try {
-      await _player.setAsset('assets/sounds/move-self.mp3');
-
-      await _player.play().then((value) => print('played move sound'));
+      await _player.setAsset('assets/sounds/move-self.mp3').then((value) async {
+        print('set asset');
+        await _player.play().then((value) => print('played move sound'));
+      });
     } catch (e) {
       print(e);
     }
@@ -116,8 +117,10 @@ class GameStateProvider extends ChangeNotifier {
 
   Future<void> playCaptureSound() async {
     try {
-      await _player.setAsset('assets/sounds/capture.mp3');
-      await _player.play().then((value) => print('played capture sound'));
+      await _player.setAsset('assets/sounds/capture.mp3').then((value) async {
+        print('set asset');
+        await _player.play().then((value) => print('played capture sound'));
+      });
     } catch (e) {
       print(e);
     }
