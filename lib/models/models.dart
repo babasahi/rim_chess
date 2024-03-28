@@ -68,3 +68,59 @@ class User {
     };
   }
 }
+
+class Game {
+  final int gameId;
+  final DateTime createdAt;
+  final int whitePlayerId;
+  final int blackPlayerId;
+  final bool whiteWon;
+
+  const Game(
+      {required this.gameId,
+      required this.createdAt,
+      required this.whitePlayerId,
+      required this.blackPlayerId,
+      required this.whiteWon});
+
+  factory Game.fromJson(Map<String, dynamic> json) {
+    return Game(
+      gameId: json['gameId'],
+      createdAt: DateTime.parse(json['createdAt']),
+      whitePlayerId: json['whitePlayerId'],
+      blackPlayerId: json['blackPlayerId'],
+      whiteWon: json['whiteWon'],
+    );
+  }
+}
+
+class GameState {
+  final int gameStateId;
+  final int gameId;
+  final int playerId;
+  final int numCapturedWhitePieces;
+  final int numCapturedBlackPieces;
+  final List<List<int>> state;
+  final DateTime createdAt;
+
+  const GameState(
+      {required this.gameStateId,
+      required this.gameId,
+      required this.playerId,
+      required this.numCapturedWhitePieces,
+      required this.numCapturedBlackPieces,
+      required this.state,
+      required this.createdAt});
+
+  factory GameState.fromJson(Map<String, dynamic> json) {
+    return GameState(
+      gameStateId: json['gameStateId'],
+      gameId: json['gameId'],
+      playerId: json['playerId'],
+      numCapturedWhitePieces: json['numCapturedWhitePieces'],
+      numCapturedBlackPieces: json['numCapturedBlackPieces'],
+      state: json['state'],
+      createdAt: DateTime.parse(json['createdAt']),
+    );
+  }
+}
