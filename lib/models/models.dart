@@ -124,3 +124,19 @@ class GameState {
     );
   }
 }
+
+class FriendShip {
+  final int friendShipId;
+  final int inviterId;
+  final int invetedId;
+  final DateTime createdAt;
+  final String state;
+
+  const FriendShip({
+    required this.friendShipId,
+    required this.inviterId,
+    required this.invetedId,
+    required this.createdAt,
+    required this.state,
+  });
+}
