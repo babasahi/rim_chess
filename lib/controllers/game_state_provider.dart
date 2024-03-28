@@ -117,11 +117,10 @@ class GameStateProvider extends ChangeNotifier {
   Future<void> playCaptureSound() async {
     try {
       await _player.setAsset('assets/sounds/capture.mp3').then((value) async {
-        print('set asset');
         await _player.play();
       });
     } catch (e) {
-      print(e);
+      return;
     }
   }
 }
