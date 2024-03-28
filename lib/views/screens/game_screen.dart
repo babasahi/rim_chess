@@ -56,8 +56,6 @@ class GameBoard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(6),
       child: Container(
-          height: boardHeight(context),
-          width: boardWidth(context),
           decoration: const BoxDecoration(
             color: Colors.white,
           ),

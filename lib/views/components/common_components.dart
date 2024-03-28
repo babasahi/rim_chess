@@ -39,54 +39,48 @@ class _BoardPieceState extends State<BoardPiece> {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minHeight: boardHeight(context) / 16 - 2,
-        minWidth: boardWidth(context) / 16 - 2,
-      ),
-      child: GestureDetector(
-        onTap: () {
-          Provider.of<GameStateProvider>(context, listen: false)
-              .pieceTapped(widget.position);
-        },
-        child: Container(
-          height: boardHeight(context) / 16,
-          width: boardHeight(context) / 16,
-          decoration: BoxDecoration(
-            color: Provider.of<GameStateProvider>(context).highlightedPiece ==
-                    widget.position
-                ? touchedSquareColor
-                : boardsPattern.elementAt(
-                        widget.position.cIndex)[widget.position.rIndex]
-                    ? whiteSqureColor
-                    : blackSqureColor,
-          ),
-          child: Animate(
-              effects: const [FadeEffect(duration: Duration(seconds: 3))],
-              onInit: (controller) async {
-                await player.setAsset('assets/sounds/capture.mp3');
-                player.play();
-              },
-              child: Provider.of<GameStateProvider>(context).board.elementAt(
-                          widget.position.cIndex)[widget.position.rIndex] ==
-                      SquareContent.empty
-                  ? const SizedBox()
-                  : (Provider.of<GameStateProvider>(context).board.elementAt(
-                              widget.position.cIndex)[widget.position.rIndex] ==
-                          SquareContent.blackPiece
-                      ? const BlackPiece(
-                          smallSize: false,
-                        )
-                      : const WhitePiece(
-                          smallSize: false,
-                        ))
-              /* Center(
+    return GestureDetector(
+      onTap: () {
+        Provider.of<GameStateProvider>(context, listen: false)
+            .pieceTapped(widget.position);
+      },
+      child: Container(
+        height: pieceHeight(context),
+        width: pieceWidth(context),
+        decoration: BoxDecoration(
+          color: Provider.of<GameStateProvider>(context).highlightedPiece ==
+                  widget.position
+              ? touchedSquareColor
+              : boardsPattern
+                      .elementAt(widget.position.cIndex)[widget.position.rIndex]
+                  ? whiteSqureColor
+                  : blackSqureColor,
+        ),
+        child: Animate(
+            effects: const [FadeEffect(duration: Duration(seconds: 3))],
+            onInit: (controller) async {
+              await player.setAsset('assets/sounds/capture.mp3');
+              player.play();
+            },
+            child: Provider.of<GameStateProvider>(context).board.elementAt(
+                        widget.position.cIndex)[widget.position.rIndex] ==
+                    SquareContent.empty
+                ? const SizedBox()
+                : (Provider.of<GameStateProvider>(context).board.elementAt(
+                            widget.position.cIndex)[widget.position.rIndex] ==
+                        SquareContent.blackPiece
+                    ? const BlackPiece(
+                        smallSize: false,
+                      )
+                    : const WhitePiece(
+                        smallSize: false,
+                      ))
+            /* Center(
                   child: Text(
                       '${widget.position.cIndex},${widget.position.rIndex}'))
              */
 
-              ),
-        ),
+            ),
       ),
     );
   }
