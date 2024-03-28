@@ -1,8 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/models/models.dart';
 
 class GameStateProvider extends ChangeNotifier {
+  final AudioPlayer _player = AudioPlayer();
+
   bool _whiteTurn = true;
   BoardPosition? _highlightedPiece;
   int _numCapturedWhitePieces = 0;
@@ -74,26 +77,49 @@ class GameStateProvider extends ChangeNotifier {
           _board[target.cIndex][target.rIndex] &&
       _board[target.cIndex][target.rIndex] != SquareContent.empty;
 
-  void movePiece(BoardPosition oldPosition, BoardPosition newPosition) {
+  void movePiece(BoardPosition oldPosition, BoardPosition newPosition) async {
     _board[newPosition.cIndex][newPosition.rIndex] =
         _board[oldPosition.cIndex][oldPosition.rIndex];
     _board[oldPosition.cIndex][oldPosition.rIndex] = SquareContent.empty;
-    _highlightedPiece = null;
-    reverseTurn();
-    notifyListeners();
+    await playMoveSound().then((value) {
+      _highlightedPiece = null;
+      reverseTurn();
+      notifyListeners();
+    });
   }
 
-  void killPiece(BoardPosition killer, BoardPosition killed) {
+  void killPiece(BoardPosition killer, BoardPosition killed) async {
     SquareContent k = _board[killer.cIndex][killer.rIndex];
     _board[killer.cIndex][killer.rIndex] = SquareContent.empty;
     _board[killed.cIndex][killed.rIndex] = k;
-    if (k == SquareContent.blackPiece) {
-      _numCapturedWhitePieces++;
-    } else {
-      _numCapturedBlackPieces++;
+    await playCaptureSound().then((value) {
+      if (k == SquareContent.blackPiece) {
+        _numCapturedWhitePieces++;
+      } else {
+        _numCapturedBlackPieces++;
+      }
+      _highlightedPiece = null;
+      reverseTurn();
+      notifyListeners();
+    });
+  }
+
+  Future<void> playMoveSound() async {
+    try {
+      await _player.setAsset('assets/sounds/move-self.mp3');
+
+      await _player.play().then((value) => print('played move sound'));
+    } catch (e) {
+      print(e);
     }
-    _highlightedPiece = null;
-    reverseTurn();
-    notifyListeners();
+  }
+
+  Future<void> playCaptureSound() async {
+    try {
+      await _player.setAsset('assets/sounds/capture.mp3');
+      await _player.play().then((value) => print('played capture sound'));
+    } catch (e) {
+      print(e);
+    }
   }
 }
