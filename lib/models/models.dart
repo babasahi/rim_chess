@@ -29,3 +29,42 @@ class BoardPosition extends Equatable {
   @override
   int get hashCode => rIndex.hashCode ^ cIndex.hashCode;
 }
+
+class User {
+  final int playerId;
+  final String name;
+  final String avatar;
+  final String phoneNumber;
+  final DateTime createdAt;
+  final int rating;
+
+  const User(
+      {required this.playerId,
+      required this.name,
+      required this.avatar,
+      required this.phoneNumber,
+      required this.createdAt,
+      required this.rating});
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      playerId: json['playerId'],
+      name: json['name'],
+      avatar: json['avatar'],
+      phoneNumber: json['phoneNumber'],
+      createdAt: DateTime.parse(json['createdAt']),
+      rating: json['rating'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'playerId': playerId,
+      'name': name,
+      'avatar': avatar,
+      'phoneNumber': phoneNumber,
+      'createdAt': createdAt.toIso8601String(),
+      'rating': rating,
+    };
+  }
+}
