@@ -23,7 +23,7 @@ class _GameScreenState extends State<GameScreen> {
         builder: (context, child) {
           return Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.25),
+                horizontal: MediaQuery.of(context).size.width * 0.1),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,

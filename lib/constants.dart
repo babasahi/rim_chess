@@ -8,10 +8,10 @@ double boardHeight(BuildContext context) =>
     MediaQuery.of(context).size.height * 0.4;
 
 double pieceHeight(BuildContext context) =>
-    MediaQuery.of(context).size.height * 0.05;
+    MediaQuery.of(context).size.height * 0.045;
 
 double pieceWidth(BuildContext context) =>
-    MediaQuery.of(context).size.height * 0.05;
+    MediaQuery.of(context).size.height * 0.045;
 const int boardLength = 64;
 
 const Color whiteSqureColor = Colors.white12;
