@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rim_chess/controllers/game_state_provider.dart';
-import 'package:rim_chess/views/home_screen.dart';
+import 'package:rim_chess/views/screens/home_screen.dart';
 
 void main() {
   runApp(const MainApp());

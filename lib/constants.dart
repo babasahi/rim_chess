@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:rim_chess/models/models.dart';
 
 double boardWidth(BuildContext context) =>
-    MediaQuery.of(context).size.height * 0.6;
+    MediaQuery.of(context).size.height * 0.8;
 
 double boardHeight(BuildContext context) =>
-    MediaQuery.of(context).size.height * 0.6;
+    MediaQuery.of(context).size.height * 0.4;
 
 const int boardLength = 64;
 

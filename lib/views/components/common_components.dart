@@ -41,8 +41,8 @@ class _BoardPieceState extends State<BoardPiece> {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(
-        minHeight: boardHeight(context) / 8 - 2,
-        minWidth: boardWidth(context) / 8 - 2,
+        minHeight: boardHeight(context) / 16 - 2,
+        minWidth: boardWidth(context) / 16 - 2,
       ),
       child: GestureDetector(
         onTap: () {
@@ -50,8 +50,8 @@ class _BoardPieceState extends State<BoardPiece> {
               .pieceTapped(widget.position);
         },
         child: Container(
-          height: boardHeight(context) / boardLength,
-          width: boardWidth(context) / boardLength,
+          height: boardHeight(context) / 16,
+          width: boardHeight(context) / 16,
           decoration: BoxDecoration(
             color: Provider.of<GameStateProvider>(context).highlightedPiece ==
                     widget.position
