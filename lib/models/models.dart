@@ -30,7 +30,7 @@ class BoardPosition extends Equatable {
   int get hashCode => rIndex.hashCode ^ cIndex.hashCode;
 }
 
-class User {
+class Player {
   final int playerId;
   final String name;
   final String avatar;
@@ -38,7 +38,7 @@ class User {
   final DateTime createdAt;
   final int rating;
 
-  const User(
+  const Player(
       {required this.playerId,
       required this.name,
       required this.avatar,
@@ -46,8 +46,8 @@ class User {
       required this.createdAt,
       required this.rating});
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory Player.fromJson(Map<String, dynamic> json) {
+    return Player(
       playerId: json['playerId'],
       name: json['name'],
       avatar: json['avatar'],
