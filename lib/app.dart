@@ -4,14 +4,14 @@ import 'package:rim_chess/controllers/auth_provider.dart';
 import 'package:rim_chess/models/models.dart';
 import 'package:rim_chess/services/cache/caching.dart';
 
-class TraineeApp extends StatefulWidget {
-  const TraineeApp({super.key});
+class GameApp extends StatefulWidget {
+  const GameApp({super.key});
 
   @override
-  State<TraineeApp> createState() => _TraineeAppState();
+  State<GameApp> createState() => _GameAppState();
 }
 
-class _TraineeAppState extends State<TraineeApp> {
+class _GameAppState extends State<GameApp> {
   Future<StartState> _startScreen() async {
     Player? u = await cachedUser();
     if (u != null) {
