@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rim_chess/controllers/auth_provider.dart';
 import 'package:rim_chess/models/models.dart';
 import 'package:rim_chess/services/cache/caching.dart';
 
@@ -30,9 +31,6 @@ class _TraineeAppState extends State<TraineeApp> {
             ChangeNotifierProvider(
               create: (context) => AuthProvider(user: snapshot.data!.user),
             ),
-            ChangeNotifierProvider(
-              create: (context) => LoadingProvider(),
-            ),
           ],
           builder: (context, child) {
             if (snapshot.connectionState == ConnectionState.waiting ||
@@ -42,16 +40,8 @@ class _TraineeAppState extends State<TraineeApp> {
               if (snapshot.hasData && snapshot.data != null) {
                 return MaterialApp(
                   debugShowCheckedModeBanner: false,
-                  localizationsDelegates: context.localizationDelegates,
-                  supportedLocales: context.supportedLocales,
-                  locale: context.locale,
                   theme: ThemeData(
-                    fontFamily: Provider.of<LocaleProvider>(context)
-                                .currentLocale
-                                .countryCode ==
-                            'US'
-                        ? 'Poppins'
-                        : 'DINNext',
+                    fontFamily: 'DINNext',
                   ),
                   home: StartState.mapStateToScreen(snapshot.data!.state),
                 );
