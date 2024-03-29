@@ -1,4 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:rim_chess/scaffold_screen.dart';
+import 'package:rim_chess/views/screens/login_screen.dart';
 
 enum SquareContent {
   whitePiece,
@@ -139,4 +142,24 @@ class FriendShip {
     required this.createdAt,
     required this.state,
   });
+}
+
+enum AppState { authenticated, unauthenticated }
+
+class StartState {
+  final AppState state;
+  final Player? user;
+
+  StartState({required this.state, required this.user});
+
+  static Widget mapStateToScreen(AppState state) {
+    switch (state) {
+      case AppState.authenticated:
+        return const MainScreen();
+      case AppState.unauthenticated:
+        return const LoginScreen();
+      default:
+        return const LoginScreen();
+    }
+  }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rim_chess/models/models.dart';
+import 'package:rim_chess/services/cache/caching.dart';
 
 class TraineeApp extends StatefulWidget {
   const TraineeApp({super.key});
@@ -9,7 +12,7 @@ class TraineeApp extends StatefulWidget {
 
 class _TraineeAppState extends State<TraineeApp> {
   Future<StartState> _startScreen() async {
-    User? u = await cachedUser();
+    Player? u = await cachedUser();
     if (u != null) {
       return StartState(state: AppState.authenticated, user: u);
     } else {
