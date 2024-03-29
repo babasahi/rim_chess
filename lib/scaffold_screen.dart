@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/views/screens/home_screen.dart';
+import 'package:rim_chess/views/screens/live_games_screen.dart';
+import 'package:rim_chess/views/screens/my_games_screen.dart';
+import 'package:rim_chess/views/screens/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -54,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
                 width: 20,
               ),
             ),
-            label: 'home'.tr(),
+            label: 'home',
           ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
