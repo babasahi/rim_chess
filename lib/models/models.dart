@@ -71,13 +71,19 @@ class Game {
   final int whitePlayerId;
   final int blackPlayerId;
   final bool whiteWon;
+  final int numCapturedWhitePieces;
+  final int numCapturedBlackPieces;
+  final List<GameMove> gameMoves;
 
   const Game(
       {required this.gameId,
       required this.createdAt,
       required this.whitePlayerId,
       required this.blackPlayerId,
-      required this.whiteWon});
+      required this.whiteWon,
+      required this.numCapturedWhitePieces,
+      required this.numCapturedBlackPieces,
+      required this.gameMoves});
 
   factory Game.fromJson(Map<String, dynamic> json) {
     return Game(
@@ -86,35 +92,33 @@ class Game {
       whitePlayerId: json['whitePlayerId'],
       blackPlayerId: json['blackPlayerId'],
       whiteWon: json['whiteWon'],
+      numCapturedWhitePieces: json['numCapturedWhitePieces'],
+      numCapturedBlackPieces: json['numCapturedBlackPieces'],
+      gameMoves: List<GameMove>.from(
+          json['gameMoves'].map((x) => GameMove.fromJson(x))),
     );
   }
 }
 
-class GameState {
-  final int gameStateId;
+class GameMove {
+  final int gameMoveId;
   final int gameId;
   final int playerId;
-  final int numCapturedWhitePieces;
-  final int numCapturedBlackPieces;
   final List<List<int>> state;
   final DateTime createdAt;
 
-  const GameState(
-      {required this.gameStateId,
+  const GameMove(
+      {required this.gameMoveId,
       required this.gameId,
       required this.playerId,
-      required this.numCapturedWhitePieces,
-      required this.numCapturedBlackPieces,
       required this.state,
       required this.createdAt});
 
-  factory GameState.fromJson(Map<String, dynamic> json) {
-    return GameState(
-      gameStateId: json['gameStateId'],
+  factory GameMove.fromJson(Map<String, dynamic> json) {
+    return GameMove(
+      gameMoveId: json['gameMoveId'],
       gameId: json['gameId'],
       playerId: json['playerId'],
-      numCapturedWhitePieces: json['numCapturedWhitePieces'],
-      numCapturedBlackPieces: json['numCapturedBlackPieces'],
       state: json['state'],
       createdAt: DateTime.parse(json['createdAt']),
     );
