@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rim_chess/app.dart';
 import 'package:rim_chess/controllers/game_state_provider.dart';
+import 'package:rim_chess/services/database/database.dart';
 import 'package:rim_chess/views/screens/home_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
