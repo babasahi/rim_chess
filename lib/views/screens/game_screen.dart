@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rim_chess/services/database/database.dart';
 import 'package:rim_chess/views/components/common_components.dart';
 import 'package:rim_chess/controllers/game_state_provider.dart';
 import 'package:rim_chess/models/models.dart';
@@ -52,28 +53,36 @@ class GameBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(6),
-      child: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              8,
-              (cIndex) => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  8,
-                  (rIndex) => BoardPiece(
-                    position: BoardPosition(cIndex: cIndex, rIndex: rIndex),
-                  ),
+    return StreamBuilder<GameMove>(
+        stream: movesStream(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            print(snapshot.data!.gameId);
+          }
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
                 ),
-              ),
-            ),
-          )),
-    );
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    8,
+                    (cIndex) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(
+                        8,
+                        (rIndex) => BoardPiece(
+                          position:
+                              BoardPosition(cIndex: cIndex, rIndex: rIndex),
+                        ),
+                      ),
+                    ),
+                  ),
+                )),
+          );
+        });
   }
 }
 /*
