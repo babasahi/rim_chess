@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/views/screens/game_screen.dart';
 
@@ -12,18 +13,67 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: screenPadding(context),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Row(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      radius: 14,
-                      backgroundColor: kPrimaryColor,
-                    )
+                    Row(
+                      children: [
+                        const CircleAvatar(
+                          radius: 22,
+                          backgroundColor: kPrimaryColor,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          'باب صالح',
+                          style: kHeadingStyle,
+                        )
+                      ],
+                    ),
+                    Container(
+                      width: screenWidth(context) * 0.25,
+                      height: screenHeight(context) * 0.04,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: kPrimaryColor),
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const Icon(
+                              FontAwesomeIcons.sackDollar,
+                              color: Colors.deepPurpleAccent,
+                              size: 20,
+                            ),
+                            Text(
+                              '48000',
+                              style: kHeadingStyle.copyWith(
+                                fontFamily: 'Poppins',
+                                color: kPrimaryColor,
+                                fontSize: 16,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
+                SizedBox(height: screenHeight(context) * 0.1),
+                Text(
+                  'Best Game Ever Best Game Ever Best Game Ever Best Game Ever Best Game Ever Best Game EverBest Game Ever Best Game Ever Best Game EverBest Game Ever Best Game Ever Best Game EverBest Game Ever Best Game Ever Best Game EverBest Game Ever Best Game Ever Best Game Ever Best Game Ever Best Game Ever Best Game Ever Best Game Ever ',
+                  style: kHeadingStyle,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: screenHeight(context) * 0.2),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(

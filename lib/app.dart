@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rim_chess/controllers/auth_provider.dart';
+import 'package:rim_chess/main.dart';
 import 'package:rim_chess/models/models.dart';
 import 'package:rim_chess/scaffold_screen.dart';
 import 'package:rim_chess/services/cache/caching.dart';
@@ -41,10 +42,14 @@ class _GameAppState extends State<GameApp> {
               if (snapshot.hasData && snapshot.data != null) {
                 return MaterialApp(
                   debugShowCheckedModeBanner: false,
+                  locale: appSupportedLocales.first,
                   theme: ThemeData(
                     fontFamily: 'DINNext',
                   ),
-                  home: const MainScreen(),
+                  home: const Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: MainScreen(),
+                  ),
                 );
               } else {
                 return const SafeArea(
