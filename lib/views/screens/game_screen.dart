@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/services/database/database.dart';
@@ -14,6 +15,45 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  void showGameFinished(BuildContext context, int winnerId) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isDismissible: false,
+      builder: (context) {
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Container(
+              decoration: BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              width: screenWidth(context) * 0.88,
+              height: screenHeight(context) * 0.4,
+              margin: EdgeInsets.only(bottom: screenHeight(context) * 0.4),
+              padding: EdgeInsets.symmetric(
+                horizontal: screenHeight(context) * 0.043,
+                vertical: screenHeight(context) * 0.03,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'Fucked',
+                    style: kHeadingStyle.copyWith(
+                      color: kBackgroundColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +64,21 @@ class _GameScreenState extends State<GameScreen> {
         builder: (context, child) {
           return Padding(
             padding: screenPadding(context),
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PlayerWidget(
-                  playerName: 'Babe Saleh Mahfoud',
-                  isWhite: true,
+                GestureDetector(
+                  onTap: () {
+                    showGameFinished(context, 7);
+                  },
+                  child: const PlayerWidget(
+                    playerName: 'Babe Saleh Mahfoud',
+                    isWhite: true,
+                  ),
                 ),
-                GameBoard(),
-                PlayerWidget(
+                const GameBoard(),
+                const PlayerWidget(
                   playerName: 'Nessibe Checikhna Nettah',
                   isWhite: false,
                 ),
