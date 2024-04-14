@@ -10,7 +10,7 @@ class GameStateProvider extends ChangeNotifier {
   BoardPosition? _highlightedPiece;
   int _numCapturedWhitePieces = 0;
   int _numCapturedBlackPieces = 0;
-  final List<List<SquareContent>> _board = initialBoard;
+  List<List<SquareContent>> _board = initialBoard;
 
   List<List<SquareContent>> get board => _board;
   BoardPosition? get highlightedPiece => _highlightedPiece;
@@ -20,6 +20,11 @@ class GameStateProvider extends ChangeNotifier {
 
   SquareContent pieceType(BoardPosition position) {
     return _board[position.cIndex][position.rIndex];
+  }
+
+  void setBoard(List<List<SquareContent>> newBoard) {
+    _board = newBoard;
+    notifyListeners();
   }
 
   void reverseTurn() => _whiteTurn = !_whiteTurn;

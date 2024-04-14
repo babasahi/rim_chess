@@ -101,6 +101,8 @@ class GameBoard extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             print(snapshot.data!.gameId);
+            Provider.of<GameStateProvider>(context, listen: false)
+                .setBoard(snapshot.data!.state);
           }
           return ClipRRect(
             borderRadius: BorderRadius.circular(6),

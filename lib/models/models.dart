@@ -107,7 +107,7 @@ class GameMove {
   final int gameMoveId;
   final int gameId;
   final int playerId;
-  final List<List<int>> state;
+  final List<List<SquareContent>> state;
   final DateTime createdAt;
 
   const GameMove(
