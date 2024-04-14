@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/views/screens/home_screen.dart';
 import 'package:rim_chess/views/screens/live_games_screen.dart';
@@ -47,66 +48,77 @@ class _MainScreenState extends State<MainScreen> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: _index == 0 ? kPrimaryColor : kBackgroundColor,
-              radius: 20,
-              child: SvgPicture.asset(
-                'assets/images/icons/home.svg',
-                color: _index == 0 ? kBackgroundColor : kIconsColor,
-                height: 20,
-                width: 20,
+            icon: Container(
+              width: 38,
+              height: 38,
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: _index == 0 ? kPrimaryColor : kBackgroundColor,
+                borderRadius: BorderRadius.circular(64),
+              ),
+              child: Center(
+                child: Icon(
+                  size: 20,
+                  FontAwesomeIcons.house,
+                  color: _index == 0 ? kBackgroundColor : kIconsColor,
+                ),
               ),
             ),
-            label: 'home',
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: _index == 1 ? kPrimaryColor : kBackgroundColor,
-              radius: 20,
-              child: SvgPicture.asset(
-                'assets/images/icons/shop.svg',
-                color: _index == 1 ? kBackgroundColor : kIconsColor,
-                width: 21,
-                height: 19,
+            icon: Container(
+              width: 38,
+              height: 38,
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: _index == 1 ? kPrimaryColor : kBackgroundColor,
+                borderRadius: BorderRadius.circular(64),
+              ),
+              child: Center(
+                child: Icon(
+                  size: 20,
+                  FontAwesomeIcons.bomb,
+                  color: _index == 1 ? kBackgroundColor : kIconsColor,
+                ),
               ),
             ),
             label: 'orders',
           ),
           BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: _index == 2 ? kPrimaryColor : kBackgroundColor,
-              radius: 20,
-              child: SvgPicture.asset(
-                'assets/images/icons/calendar.svg',
-                color: _index == 2 ? kBackgroundColor : kIconsColor,
-                height: 22.25,
-                width: 21,
+            icon: Container(
+              width: 38,
+              height: 38,
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: _index == 2 ? kPrimaryColor : kBackgroundColor,
+                borderRadius: BorderRadius.circular(64),
+              ),
+              child: Center(
+                child: Icon(
+                  FontAwesomeIcons.list,
+                  color: _index == 2 ? kBackgroundColor : kIconsColor,
+                  size: 20,
+                ),
               ),
             ),
             label: 'support',
           ),
           BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: _index == 3 ? kPrimaryColor : kBackgroundColor,
-              radius: 20,
-              child: SvgPicture.asset(
-                'assets/images/icons/membership.svg',
-                color: _index == 3 ? kBackgroundColor : kIconsColor,
-                height: 25,
-                width: 24,
+            icon: Container(
+              width: 38,
+              height: 38,
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: _index == 3 ? kPrimaryColor : kBackgroundColor,
+                borderRadius: BorderRadius.circular(64),
               ),
-            ),
-            label: 'support',
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: _index == 4 ? kPrimaryColor : kBackgroundColor,
-              radius: 20,
-              child: SvgPicture.asset(
-                'assets/images/icons/options.svg',
-                color: _index == 4 ? kBackgroundColor : kIconsColor,
-                width: 19.5,
-                height: 15.5,
+              child: Center(
+                child: Icon(
+                  FontAwesomeIcons.user,
+                  color: _index == 3 ? kBackgroundColor : kIconsColor,
+                  size: 20,
+                ),
               ),
             ),
             label: 'support',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/views/screens/game_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,11 +8,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: kSecondaryColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Row(
+              children: [],
+            ),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -23,11 +27,22 @@ class HomeScreen extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.deepPurpleAccent,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                height: 34,
-                width: MediaQuery.of(context).size.width * 0.2,
+                    color: Colors.deepPurpleAccent,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.deepPurpleAccent.shade400,
+                        offset: const Offset(0, 6),
+                        spreadRadius: BorderSide.strokeAlignInside,
+                      ),
+                      BoxShadow(
+                        color: Colors.deepPurpleAccent.shade400,
+                        offset: const Offset(0, 6),
+                        spreadRadius: BorderSide.strokeAlignInside,
+                      )
+                    ]),
+                height: 38,
+                width: MediaQuery.of(context).size.width * 0.6,
                 child: const Center(
                   child: Text(
                     'ابدا اللعب',

@@ -15,21 +15,3 @@ void main() async {
   );
   runApp(const GameApp());
 }
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: ChangeNotifierProvider(
-          create: (context) => GameStateProvider(),
-          builder: (context, child) {
-            return const HomeScreen();
-          },
-        ),
-      ),
-    );
-  }
-}

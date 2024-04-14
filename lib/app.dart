@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rim_chess/controllers/auth_provider.dart';
 import 'package:rim_chess/models/models.dart';
+import 'package:rim_chess/scaffold_screen.dart';
 import 'package:rim_chess/services/cache/caching.dart';
 
 class GameApp extends StatefulWidget {
@@ -43,7 +44,7 @@ class _GameAppState extends State<GameApp> {
                   theme: ThemeData(
                     fontFamily: 'DINNext',
                   ),
-                  home: StartState.mapStateToScreen(snapshot.data!.state),
+                  home: const MainScreen(),
                 );
               } else {
                 return const SafeArea(
