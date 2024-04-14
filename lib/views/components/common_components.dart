@@ -89,6 +89,9 @@ class BlackPiece extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       'assets/icons/black_pawn.svg',
+      width: smallSize
+          ? MediaQuery.of(context).size.height * 0.025
+          : MediaQuery.of(context).size.height * 0.05,
       height: smallSize
           ? MediaQuery.of(context).size.height * 0.025
           : MediaQuery.of(context).size.height * 0.05,
@@ -145,16 +148,33 @@ class PlayerWidget extends StatelessWidget {
                 ),
               ),
               Row(
-                children: List.generate(
-                  isWhite
-                      ? Provider.of<GameStateProvider>(context)
-                          .numCapturedBlackPieces
-                      : Provider.of<GameStateProvider>(context)
-                          .numCapturedWhitePieces,
-                  (index) => isWhite
-                      ? const BlackPiece(smallSize: true)
-                      : const WhitePiece(smallSize: true),
-                ),
+                children: [
+                  Row(
+                    children: List.generate(
+                      isWhite
+                          ? Provider.of<GameStateProvider>(context)
+                              .numCapturedBlackPieces
+                          : Provider.of<GameStateProvider>(context)
+                              .numCapturedWhitePieces,
+                      (index) => isWhite
+                          ? const BlackPiece(smallSize: true)
+                          : const WhitePiece(smallSize: true),
+                    ),
+                  ),
+                  Text(isWhite
+                      ? (Provider.of<GameStateProvider>(context)
+                                  .numCapturedBlackPieces >
+                              Provider.of<GameStateProvider>(context)
+                                  .numCapturedWhitePieces
+                          ? '+${Provider.of<GameStateProvider>(context).numCapturedBlackPieces - Provider.of<GameStateProvider>(context).numCapturedWhitePieces}'
+                          : '')
+                      : (Provider.of<GameStateProvider>(context)
+                                  .numCapturedWhitePieces >
+                              Provider.of<GameStateProvider>(context)
+                                  .numCapturedBlackPieces
+                          ? '+${Provider.of<GameStateProvider>(context).numCapturedWhitePieces - Provider.of<GameStateProvider>(context).numCapturedBlackPieces}'
+                          : ''))
+                ],
               ),
             ],
           ),
