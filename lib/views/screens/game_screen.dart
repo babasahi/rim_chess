@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/services/database/database.dart';
 import 'package:rim_chess/views/components/common_components.dart';
 import 'package:rim_chess/controllers/game_state_provider.dart';
@@ -16,25 +17,22 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
           child: ChangeNotifierProvider(
         create: (context) => GameStateProvider(),
         builder: (context, child) {
           return Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.1),
+            padding: screenPadding(context),
             child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PlayerWidget(
                   playerName: 'Babe Saleh Mahfoud',
                   isWhite: true,
                 ),
-                SizedBox(height: 32),
                 GameBoard(),
-                SizedBox(height: 32),
                 PlayerWidget(
                   playerName: 'Nessibe Checikhna Nettah',
                   isWhite: false,

@@ -120,7 +120,7 @@ class PlayerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: boardWidth(context),
-      height: MediaQuery.of(context).size.height * 0.1,
+      height: MediaQuery.of(context).size.height * 0.07,
       decoration: BoxDecoration(
         color: Colors.grey.shade100.withOpacity(0.5),
         borderRadius: BorderRadius.circular(8),
