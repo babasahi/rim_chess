@@ -52,7 +52,7 @@ class Player {
       playerId: json['playerId'],
       name: json['name'],
       phoneNumber: json['phoneNumber'],
-      createdAt: DateTime.parse(json['createdAt']),
+      createdAt: DateTime.parse(json['created_at']),
       rating: json['rating'],
     );
   }
@@ -91,7 +91,7 @@ class Game {
   factory Game.fromJson(Map<String, dynamic> json) {
     return Game(
       gameId: json['gameId'],
-      createdAt: DateTime.parse(json['createdAt']),
+      createdAt: DateTime.parse(json['created_at']),
       whitePlayerId: json['whitePlayerId'],
       blackPlayerId: json['blackPlayerId'],
       whiteWon: json['whiteWon'],
@@ -123,7 +123,7 @@ class GameMove {
       gameId: json['gameId'],
       playerId: json['playerId'],
       state: json['state'],
-      createdAt: DateTime.parse(json['createdAt']),
+      createdAt: DateTime.parse(json['created_at']),
     );
   }
 }

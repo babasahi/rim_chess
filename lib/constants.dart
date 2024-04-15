@@ -165,3 +165,54 @@ List<List<SquareContent>> initialBoard = [
     SquareContent.blackPiece,
   ],
 ];
+
+
+/*
+FutureBuilder<List<Brand>>(
+                          future :future( Provider.of<AuthProvider>(context, listen: false)
+                            .currentUser!
+                            .accessToken, ),
+                          initialData =[],
+                          builder = (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                    ConnectionState.waiting ||
+                                snapshot.connectionState ==
+                                    ConnectionState.active) {
+                              return const Center(
+                                child: AppLoader(),
+                              );
+                            } else {
+                              if (snapshot.hasData && snapshot.data != null) {
+                                if (snapshot.data!.isEmpty) {
+                                  return Center(
+                                    child: Text(
+                                      'pleaseCheckInternetConnection'.tr(),
+                                      style: kNormalTextStyle.copyWith(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return ListView.builder(
+                                    itemCount:
+                                        ,
+                                    itemBuilder: (context, index) {
+                                      return 
+                                    },
+                                   
+                                  );
+                                }
+                              } else {
+                                return Center(
+                                  child: Text(
+                                    'pleaseCheckInternetConnection'.tr(),
+                                    style: kNormalTextStyle.copyWith(
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                        )
+*/

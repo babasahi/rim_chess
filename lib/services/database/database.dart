@@ -28,3 +28,13 @@ Stream<GameMove> movesStream() async* {
   }
   print('streamfunction ended');
 }
+
+Future<Player?> player(int id) async {
+  try {
+    final data = await supabase.from('players').select().eq('playerId', id);
+    return Player.fromJson(data.first);
+  } catch (e) {
+    print(e);
+    return null;
+  }
+}
