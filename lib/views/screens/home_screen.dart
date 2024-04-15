@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rim_chess/constants.dart';
+import 'package:rim_chess/views/screens/game_code_screen.dart';
 import 'package:rim_chess/views/screens/game_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -103,7 +104,48 @@ class HomeScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: const Center(
                       child: Text(
-                        'ابدا اللعب',
+                        'لعبة جديدة',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontFamily: 'DINNext',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: screenHeight(context) * 0.012),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GameCodeScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.deepPurpleAccent.shade400,
+                            offset: const Offset(0, 6),
+                            spreadRadius: BorderSide.strokeAlignInside,
+                          ),
+                          BoxShadow(
+                            color: Colors.deepPurpleAccent.shade400,
+                            offset: const Offset(0, 6),
+                            spreadRadius: BorderSide.strokeAlignInside,
+                          )
+                        ]),
+                    height: 38,
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: const Center(
+                      child: Text(
+                        'انضمام الى لعبة',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
