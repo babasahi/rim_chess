@@ -30,10 +30,10 @@ TextStyle kHeadingStyle = TextStyle(
 );
 // Colors
 
-const Color kPrimaryColor = Color(0xFF4A4A4A);
+const Color kPrimaryColor = Colors.deepPurpleAccent;
 const Color kBackgroundColor = Color(0xFFFFFFFF);
 const Color kSecondaryColor = Color(0xFFF5F5F5);
-const Color kTertiaryColor = Color(0xFFDD1D45);
+const Color kTertiaryColor = Colors.deepOrangeAccent;
 const Color kDarkBackgroundColor = Color(0xFFF6F6F6);
 const Color kIconsColor = Color(0XFFD9D9D9);
 const Color kBorderColor = Color(0XFFC9C9C9);

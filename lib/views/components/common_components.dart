@@ -196,3 +196,176 @@ class AppLoader extends StatelessWidget {
     );
   }
 }
+
+class AppTextField extends StatelessWidget {
+  const AppTextField({
+    super.key,
+    required this.icon,
+    required this.obscureText,
+    required this.hintText,
+    required this.controller,
+    required this.trailingIcon,
+    required this.trailingIconTapped,
+    required this.keyboardType,
+    required this.textFieldWidth,
+    required this.onChanged,
+  });
+  final Widget icon;
+  final Widget? trailingIcon;
+  final double textFieldWidth;
+  final bool obscureText;
+  final String hintText;
+  final TextEditingController controller;
+  final Function trailingIconTapped;
+  final Function onChanged;
+
+  final TextInputType keyboardType;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: textFieldWidth,
+      padding: EdgeInsets.symmetric(
+        horizontal: screenWidth(context) * 0.05,
+      ),
+      decoration: BoxDecoration(
+        color: kBackgroundColor,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: kBorderColor),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          icon,
+          const SizedBox(width: 12),
+          Flexible(
+            child: SizedBox(
+              child: TextFormField(
+                onChanged: (v) {
+                  onChanged();
+                },
+                onEditingComplete: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
+                },
+                style: kNormalTextStyle.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+                controller: controller,
+                obscureText: obscureText,
+                keyboardType: keyboardType,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                  hintText: hintText,
+                  border: InputBorder.none,
+                  hintStyle: kNormalTextStyle.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black.withOpacity(0.8),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          trailingIcon != null
+              ? Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: trailingIcon,
+                )
+              : const SizedBox.shrink()
+        ],
+      ),
+    );
+  }
+}
+
+class AppActionButton extends StatelessWidget {
+  const AppActionButton({
+    super.key,
+    required this.onTap,
+    required this.label,
+    required this.icon,
+    required this.activated,
+    required this.smallTitle,
+  });
+  final String label;
+  final Function onTap;
+  final Widget? icon;
+  final bool activated;
+  final bool smallTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onTap();
+      },
+      child: Container(
+        height: screenHeight(context) * 0.052,
+        margin: EdgeInsets.symmetric(
+          horizontal: screenWidth(context) * 0.03,
+        ),
+        decoration: BoxDecoration(
+          color: activated ? kPrimaryColor : kPrimaryColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: EdgeInsets.symmetric(
+          vertical: screenHeight(context) * 0.001,
+          horizontal: screenWidth(context) * 0.05,
+        ),
+        child: Center(
+          child: icon == null
+              ? Text(
+                  label,
+                  style: kHeadingStyle.copyWith(
+                      fontWeight:
+                          activated ? FontWeight.bold : FontWeight.normal,
+                      fontSize: smallTitle ? 14 : 20,
+                      color: activated ? kBackgroundColor : kSecondaryColor),
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    icon!,
+                    SizedBox(width: screenWidth(context) * 0.25),
+                    Text(
+                      label,
+                      style: kHeadingStyle.copyWith(
+                          fontWeight:
+                              activated ? FontWeight.bold : FontWeight.normal,
+                          color:
+                              activated ? kBackgroundColor : kSecondaryColor),
+                    ),
+                  ],
+                ),
+        ),
+      ),
+    );
+  }
+}
+
+void showAppSnackBar(String message, bool success, context) {
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    elevation: 1,
+    margin: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.1),
+    behavior: SnackBarBehavior.floating,
+    padding: EdgeInsets.zero,
+    clipBehavior: Clip.antiAlias,
+    backgroundColor: Colors.transparent,
+    content: Container(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      color: success ? Colors.greenAccent : Colors.redAccent,
+      child: Center(
+        child: Text(
+          message,
+          style: kHeadingStyle.copyWith(
+            color: success ? kSecondaryColor : kBackgroundColor,
+            fontSize: 14,
+          ),
+        ),
+      ),
+    ),
+  ));
+}
