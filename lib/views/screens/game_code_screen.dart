@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/views/components/common_components.dart';
+import 'package:rim_chess/views/screens/game_screen.dart';
 
 class GameCodeScreen extends StatefulWidget {
   const GameCodeScreen({super.key});
@@ -49,7 +50,14 @@ class _GameCodeScreenState extends State<GameCodeScreen> {
                 ),
                 SizedBox(height: screenHeight(context) * 0.03),
                 AppActionButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GameScreen(),
+                      ),
+                    );
+                  },
                   label: 'دخول',
                   icon: null,
                   activated: _controller.text.length == 4,
