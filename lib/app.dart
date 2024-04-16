@@ -48,9 +48,11 @@ class _GameAppState extends State<GameApp> {
                     fontFamily: 'DINNext',
                   ),
                   home: const Directionality(
-                      textDirection: TextDirection.rtl, child: GameCodeScreen()
-                      //MainScreen(),
-                      ),
+                    textDirection: TextDirection.rtl,
+                    child:
+                        // GameCodeScreen()
+                        MainScreen(),
+                  ),
                 );
               } else {
                 return const SafeArea(
