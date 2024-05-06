@@ -102,7 +102,7 @@ class GameBoard extends StatelessWidget {
           if (snapshot.hasData) {
             print(snapshot.data!.gameId);
             Provider.of<GameStateProvider>(context, listen: false)
-                .setBoard(snapshot.data!.state);
+                .injectMove(snapshot.data!);
           }
           return ClipRRect(
             borderRadius: BorderRadius.circular(6),
@@ -130,17 +130,3 @@ class GameBoard extends StatelessWidget {
         });
   }
 }
-/*
-GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: boardLength,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 8),
-          itemBuilder: (context, index) {
-            if (changeIndexes.contains(index)) {
-              _firstIsWhite = !_firstIsWhite;
-            }
-            return BoardPiece(index: index, firstIsWhite: _firstIsWhite);
-          },
-        ),
-*/

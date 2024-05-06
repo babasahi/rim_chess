@@ -13,10 +13,6 @@ Stream<GameMove> movesStream() async* {
     print("new loop");
     yield await Future.delayed(
         Duration(milliseconds: Random.secure().nextInt(900)), () async {
-      for (var element in initialBoard) {
-        element.shuffle();
-        initialBoard.shuffle();
-      }
       return GameMove(
         gameMoveId: 8,
         gameId: Random.secure().nextInt(1000),

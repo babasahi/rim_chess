@@ -7,6 +7,8 @@ import 'package:rim_chess/scaffold_screen.dart';
 import 'package:rim_chess/services/cache/caching.dart';
 import 'package:rim_chess/views/screens/game_code_screen.dart';
 
+import 'views/screens/game_screen.dart';
+
 class GameApp extends StatefulWidget {
   const GameApp({super.key});
 
@@ -48,11 +50,7 @@ class _GameAppState extends State<GameApp> {
                     fontFamily: 'DINNext',
                   ),
                   home: const Directionality(
-                    textDirection: TextDirection.rtl,
-                    child:
-                        // GameCodeScreen()
-                        MainScreen(),
-                  ),
+                      textDirection: TextDirection.rtl, child: GameScreen()),
                 );
               } else {
                 return const SafeArea(
