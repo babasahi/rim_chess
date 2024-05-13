@@ -11,12 +11,14 @@ class GameStateProvider extends ChangeNotifier {
   int _numCapturedWhitePieces = 0;
   int _numCapturedBlackPieces = 0;
   final List<List<SquareContent>> _board = initialBoard;
+  bool _movingLock = false;
 
   List<List<SquareContent>> get board => _board;
   BoardPosition? get highlightedPiece => _highlightedPiece;
   bool get whiteTurn => _whiteTurn;
   int get numCapturedWhitePieces => _numCapturedWhitePieces;
   int get numCapturedBlackPieces => _numCapturedBlackPieces;
+  bool get movingLock => _movingLock;
 
   SquareContent pieceType(BoardPosition position) {
     return _board[position.cIndex][position.rIndex];
@@ -80,14 +82,18 @@ class GameStateProvider extends ChangeNotifier {
       _board[target.cIndex][target.rIndex] != SquareContent.empty;
 
   void movePiece(BoardPosition oldPosition, BoardPosition newPosition) async {
-    _board[newPosition.cIndex][newPosition.rIndex] =
-        _board[oldPosition.cIndex][oldPosition.rIndex];
-    _board[oldPosition.cIndex][oldPosition.rIndex] = SquareContent.empty;
-    await playMoveSound().then((value) {
-      _highlightedPiece = null;
-      reverseTurn();
-      notifyListeners();
-    });
+    if (!_movingLock) {
+      _movingLock = true;
+      _board[newPosition.cIndex][newPosition.rIndex] =
+          _board[oldPosition.cIndex][oldPosition.rIndex];
+      _board[oldPosition.cIndex][oldPosition.rIndex] = SquareContent.empty;
+      await playMoveSound().then((value) {
+        _highlightedPiece = null;
+        reverseTurn();
+        notifyListeners();
+      });
+      _movingLock = false;
+    }
   }
 
   void killPiece(BoardPosition killer, BoardPosition killed) async {

@@ -7,7 +7,7 @@ const String avatarUrl = 'https://source.boringavatars.com/beam/100';
 final supabase = Supabase.instance.client;
 
 Stream<GameMove> movesStream() async* {
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 0; i++) {
     print("new loop");
     yield await Future.delayed(
         Duration(milliseconds: Random.secure().nextInt(900)), () async {

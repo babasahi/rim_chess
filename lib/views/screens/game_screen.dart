@@ -100,9 +100,11 @@ class GameBoard extends StatelessWidget {
         stream: movesStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data!.gameId);
-            Provider.of<GameStateProvider>(context, listen: false).movePiece(
-                snapshot.data!.oldPosition, snapshot.data!.newPosition);
+            if (!Provider.of<GameStateProvider>(context, listen: false)
+                .movingLock) {
+              Provider.of<GameStateProvider>(context, listen: false).movePiece(
+                  snapshot.data!.oldPosition, snapshot.data!.newPosition);
+            }
           }
           return ClipRRect(
             borderRadius: BorderRadius.circular(6),
