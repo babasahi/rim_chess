@@ -23,9 +23,7 @@ class GameStateProvider extends ChangeNotifier {
   }
 
   void injectMove(GameMove newMove) {
-    if (moveIsValid(newMove)) {
-      _board=
-    }
+    if (moveIsValid(newMove)) {}
   }
 
   bool moveIsValid(GameMove move) {

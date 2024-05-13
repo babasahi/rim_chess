@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rim_chess/scaffold_screen.dart';
 import 'package:rim_chess/views/screens/login_screen.dart';
@@ -31,6 +32,13 @@ class BoardPosition extends Equatable {
 
   @override
   int get hashCode => rIndex.hashCode ^ cIndex.hashCode;
+
+  factory BoardPosition.fromJson(Map<String, dynamic> json) {
+    return BoardPosition(
+      rIndex: json['rIndex'],
+      cIndex: json['cIndex'],
+    );
+  }
 }
 
 class Player {
@@ -107,23 +115,26 @@ class GameMove {
   final int gameMoveId;
   final int gameId;
   final int playerId;
-  final List<List<SquareContent>> state;
+  final BoardPosition oldPosition;
+  final BoardPosition newPosition;
   final DateTime createdAt;
 
   const GameMove(
       {required this.gameMoveId,
       required this.gameId,
       required this.playerId,
-      required this.state,
-      required this.createdAt});
+      required this.createdAt,
+      required this.oldPosition,
+      required this.newPosition});
 
   factory GameMove.fromJson(Map<String, dynamic> json) {
     return GameMove(
       gameMoveId: json['gameMoveId'],
       gameId: json['gameId'],
       playerId: json['playerId'],
-      state: json['state'],
       createdAt: DateTime.parse(json['created_at']),
+      oldPosition: BoardPosition.fromJson(json['oldPosition']),
+      newPosition: BoardPosition.fromJson(json['newPosition']),
     );
   }
 }

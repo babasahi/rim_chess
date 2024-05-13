@@ -17,7 +17,14 @@ Stream<GameMove> movesStream() async* {
         gameMoveId: 8,
         gameId: Random.secure().nextInt(1000),
         playerId: 3,
-        state: initialBoard,
+        oldPosition: BoardPosition.fromJson({
+          'cIndex': Random.secure().nextInt(8),
+          'rIndex': Random.secure().nextInt(8)
+        }),
+        newPosition: BoardPosition.fromJson({
+          'cIndex': Random.secure().nextInt(8),
+          'rIndex': Random.secure().nextInt(8)
+        }),
         createdAt: DateTime.now(),
       );
     });
