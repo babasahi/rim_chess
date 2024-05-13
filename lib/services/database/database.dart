@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:rim_chess/constants.dart';
 import 'package:rim_chess/models/models.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

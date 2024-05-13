@@ -22,13 +22,7 @@ class GameStateProvider extends ChangeNotifier {
     return _board[position.cIndex][position.rIndex];
   }
 
-  void injectMove(GameMove newMove) {
-    if (moveIsValid(newMove)) {}
-  }
-
-  bool moveIsValid(GameMove move) {
-    return true;
-  }
+  void injectMove(GameMove newMove) {}
 
   void reverseTurn() => _whiteTurn = !_whiteTurn;
 
